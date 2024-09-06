@@ -1,8 +1,20 @@
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(option =>
+{
+    option.AddDefaultPolicy(builder =>
+    {
+        builder.WithOrigins("https://localhost:7042")
+               .WithOrigins("http://localhost:7042")
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .AllowCredentials();
+    });
+});
 // Add services to the container.
 
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 
@@ -10,6 +22,8 @@ var summaries = new[]
 {
     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
 };
+
+app.UseCors();
 
 app.MapGet("/weatherforecast", () =>
 {
