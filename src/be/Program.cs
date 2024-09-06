@@ -4,11 +4,12 @@ builder.Services.AddCors(option =>
 {
     option.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins("https://localhost:7042")
-               .WithOrigins("http://localhost:7042")
+        builder//.WithOrigins("https://localhost:7042")
+               //.WithOrigins("http://localhost:7042")
+               .AllowAnyOrigin()
                .AllowAnyHeader()
-               .AllowAnyMethod()
-               .AllowCredentials();
+               .AllowAnyMethod();
+               //.AllowCredentials();
     });
 });
 // Add services to the container.
